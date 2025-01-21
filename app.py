@@ -4,7 +4,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    time.sleep(10)
     return 'Hello, This is V2'
 
 if __name__ == '__main__':
