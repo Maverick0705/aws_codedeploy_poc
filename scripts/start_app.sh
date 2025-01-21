@@ -2,4 +2,4 @@
 cd /home/ubuntu
 source myenv/bin/activate
 pip install flask
-python app.py &
+nohup python app.py &
