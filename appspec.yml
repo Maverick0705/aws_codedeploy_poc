@@ -20,7 +20,5 @@ hooks:
     - location: scripts/install_dependencies.sh
       runas: ubuntu
   ApplicationStart:
-    - location: /bin/bash -c "sudo pkill -f app.py || true" # Add the pkill command before app start
-      runas: ubuntu
     - location: scripts/start_app.sh
       runas: ubuntu
