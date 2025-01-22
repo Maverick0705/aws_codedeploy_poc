@@ -21,8 +21,8 @@ permissions:
     mode: 755
 hooks:
   BeforeInstall:
-    - location: scripts/install_dependencies.sh
+    - location: /home/ubuntu/scripts/install_dependencies.sh
       runas: ubuntu
   ApplicationStart:
-    - location: scripts/start_app.sh
+    - location: /home/ubuntu/scripts/start_app.sh
       runas: ubuntu
