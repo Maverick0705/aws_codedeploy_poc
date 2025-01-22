@@ -1,14 +1,18 @@
 version: 0.0
 os: linux
 files:
-  - source: app.py
-    destination: /home/ubuntu
-  - source: requirements.py
-    destination: /home/ubuntu
   - source: scripts/install_dependencies.sh
     destination: /home/ubuntu/scripts
+    overwrite: yes
   - source: scripts/start_app.sh
     destination: /home/ubuntu/scripts
+    overwrite: yes
+  - source: app.py
+    destination: /home/ubuntu
+    overwrite: yes
+  - source: requirements.py
+    destination: /home/ubuntu
+    overwrite: yes
 permissions:
   - object: /home/ubuntu/app.py
     owner: ubuntu
@@ -31,4 +35,3 @@ hooks:
     - location: /home/ubuntu/scripts/start_app.sh
       timeout: 300
       runas: ubuntu
-c
