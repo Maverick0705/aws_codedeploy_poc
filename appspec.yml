@@ -1,21 +1,19 @@
 version: 0.0
 os: linux
 files:
-  - source: /app.py
+  - source: /*
     destination: /home/ubuntu
-  - source: /requirements.txt
-    destination: /home/ubuntu/requirements.txt
-  - source: /scripts/install_dependencies.sh
-    destination: /home/ubuntu/scripts
-  - source: /scripts/start_app.sh
-    destination: /home/ubuntu/scripts
 permissions:
-  - object: /home/ubuntu/app.py
+   - object: /home/ubuntu/app.py
     pattern: '**'
     owner: ubuntu
     group: ubuntu
     mode: 755
-  
+  - object: /home/ubuntu/scripts/install_dependencies.sh
+    pattern: '**'
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
   - object: /home/ubuntu/scripts/start_app.sh
     pattern: '**'
     owner: ubuntu
