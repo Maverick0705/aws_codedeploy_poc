@@ -6,9 +6,9 @@ files:
   - source: /requirements.txt
     destination: /home/ubuntu/requirements.txt
   - source: /scripts/install_dependencies.sh
-    destination: /home/ubuntu/scripts/install_dependencies.sh
+    destination: /home/ubuntu/scripts
   - source: /scripts/start_app.sh
-    destination: /home/ubuntu/scripts/start_app.sh
+    destination: /home/ubuntu/scripts
 permissions:
   - object: /home/ubuntu/app.py
     pattern: '**'
