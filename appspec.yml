@@ -15,6 +15,12 @@ permissions:
     owner: ubuntu
     group: ubuntu
     mode: 755
+  
+  - object: /home/ubuntu/scripts/start_app.sh
+    pattern: '**'
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies.sh
