@@ -5,31 +5,30 @@ files:
     destination: /home/ubuntu
   - source: requirements.py
     destination: /home/ubuntu
+  - source: scripts/install_dependencies.sh
+    destination: /home/ubuntu/scripts
+  - source: scripts/start_app.sh
+    destination: /home/ubuntu/scripts
 permissions:
   - object: /home/ubuntu/app.py
     owner: ubuntu
     group: ubuntu
     mode: 755
+  - object: /home/ubuntu/scripts/install_dependencies.sh
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
+  - object: /home/ubuntu/scripts/start_app.sh
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
 hooks:
   BeforeInstall:
-    - location: /bin/bash
+    - location: /home/ubuntu/scripts/install_dependencies.sh
       timeout: 300
       runas: ubuntu
-      arguments:
-        - -c
-        - |
-          cd /home/ubuntu
-          python3 -m venv myenv
-          source myenv/bin/activate
   ApplicationStart:
-    - location: /bin/bash
+    - location: /home/ubuntu/scripts/start_app.sh
       timeout: 300
       runas: ubuntu
-      arguments:
-        - -c
-        - |
-          cd /home/ubuntu
-          source myenv/bin/activate
-          pip install flask
-          sudo pkill -f app.py || true
-          python app.py &
+c
