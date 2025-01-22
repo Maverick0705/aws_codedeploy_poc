@@ -1,28 +1,35 @@
 version: 0.0
 os: linux
 files:
-  - source: /*
+  - source: app.py
+    destination: /home/ubuntu
+  - source: requirements.py
     destination: /home/ubuntu
 permissions:
-   - object: /home/ubuntu/app.py
-    pattern: '**'
-    owner: ubuntu
-    group: ubuntu
-    mode: 755
-  - object: /home/ubuntu/scripts/install_dependencies.sh
-    pattern: '**'
-    owner: ubuntu
-    group: ubuntu
-    mode: 755
-  - object: /home/ubuntu/scripts/start_app.sh
-    pattern: '**'
+  - object: /home/ubuntu/app.py
     owner: ubuntu
     group: ubuntu
     mode: 755
 hooks:
   BeforeInstall:
-    - location: scripts/install_dependencies.sh
+    - location: /bin/bash
+      timeout: 300
       runas: ubuntu
+      arguments:
+        - -c
+        - |
+          cd /home/ubuntu
+          python3 -m venv myenv
+          source myenv/bin/activate
   ApplicationStart:
-    - location: scripts/start_app.sh
+    - location: /bin/bash
+      timeout: 300
       runas: ubuntu
+      arguments:
+        - -c
+        - |
+          cd /home/ubuntu
+          source myenv/bin/activate
+          pip install flask
+          sudo pkill -f app.py || true
+          python app.py &
